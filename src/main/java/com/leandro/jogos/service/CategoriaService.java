@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.leandro.jogos.domain.Categoria;
 import com.leandro.jogos.repository.CategoriaRepository;
+import com.leandro.jogos.service.exceptions.ObjetoNaoEncontradoException;
 
 @Service
 public class CategoriaService {
@@ -16,7 +17,7 @@ public class CategoriaService {
 	
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(()-> new ObjetoNaoEncontradoException("Objeto não encontrado.ID: "+ id +",Tipo: "+ Categoria.class.getName()));
 		
 	}
 }

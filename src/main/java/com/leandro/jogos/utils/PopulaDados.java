@@ -41,13 +41,13 @@ public class PopulaDados {
 		cat4.getProdutos().addAll(Arrays.asList(p1,p2,p3,p4,p5));
 		cat5.getProdutos().addAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
-		p1.getCategorias().addAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
-		p2.getCategorias().addAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
-		p3.getCategorias().addAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
-		p4.getCategorias().addAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
-		p5.getCategorias().addAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
+		p1.getCategorias().addAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
+		p2.getCategorias().addAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
+		p3.getCategorias().addAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
+		p4.getCategorias().addAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
+		p5.getCategorias().addAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5));
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 				
 	}
