@@ -8,12 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.leandro.jogos.domain.Categoria;
-import com.leandro.jogos.domain.Cidade;
-import com.leandro.jogos.domain.Estado;
 import com.leandro.jogos.domain.Produto;
 import com.leandro.jogos.repository.CategoriaRepository;
-import com.leandro.jogos.repository.CidadeRepository;
-import com.leandro.jogos.repository.EstadoRepository;
 import com.leandro.jogos.repository.ProdutoRepository;
 
 @Component
@@ -24,12 +20,6 @@ public class PopulaDados {
 	
 	@Autowired
 	ProdutoRepository produtoRepository;
-	
-	@Autowired
-	EstadoRepository estadoRepository;
-	
-	@Autowired
-	CidadeRepository cidadeRepository;
 	
 	
 	@PostConstruct
@@ -61,23 +51,7 @@ public class PopulaDados {
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 		
-		Estado est1 = new Estado(null, "Paraná");
-		Estado est2 = new Estado(null, "São Paulo");
 		
-		Cidade c1 = new Cidade(null, "Curitiba", est1);
-		Cidade c2 = new Cidade(null, "Londrina", est1);
-		Cidade c3 = new Cidade(null, "São José", est1);
-		Cidade c4 = new Cidade(null, "Foz do Iguaçu", est1);
-		Cidade c5 = new Cidade(null, "São Paulo", est2);
-		Cidade c6 = new Cidade(null, "Campinas", est2);
-		Cidade c7 = new Cidade(null, "São Bernardo", est2);
-		Cidade c8 = new Cidade(null, "São Caetano", est2);
-		
-		est1.getCidades().addAll(Arrays.asList(c1,c2,c3,c4));
-		est2.getCidades().addAll(Arrays.asList(c5,c6,c7,c8));
-		
-		estadoRepository.saveAll(Arrays.asList(est1,est2));
-		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3,c4,c5,c6,c7,c8));
 		
 				
 	}
