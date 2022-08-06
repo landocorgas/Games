@@ -2,42 +2,49 @@ package com.leandro.jogos.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Pessoa implements Serializable{
+public class Servico implements Serializable{
 
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
-	private String email;
-	private String CodNacional;
+	private Date dataEntrada;
 	
-	@ManyToMany(mappedBy = "pessoas")
-	private List<Servico> servicos = new ArrayList<>();
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name = "SERVICO_PESSOA",
+	joinColumns = @JoinColumn(name = "id_servico"),
+	inverseJoinColumns = @JoinColumn(name = "id_pessoa")) 
 	
-	public Pessoa() {
+	private List<Pessoa> pessoas = new ArrayList<>();
+	
+	public Servico() {
 		
 	}
 
-	public Pessoa(Integer id, String nome, String email, String codNacional) {
+	public Servico(Integer id, Date dataEntrada) {
 		super();
 		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		CodNacional = codNacional;
+		this.dataEntrada = dataEntrada;
 	}
 
 	@Override
@@ -56,7 +63,7 @@ public class Pessoa implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		Servico other = (Servico) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -73,37 +80,20 @@ public class Pessoa implements Serializable{
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Date getDataEntrada() {
+		return dataEntrada;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDataEntrada(Date dataEntrada) {
+		this.dataEntrada = dataEntrada;
 	}
 
-	public String getEmail() {
-		return email;
+	public List<Pessoa> getPessoas() {
+		return pessoas;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPessoas(List<Pessoa> pessoas) {
+		this.pessoas = pessoas;
 	}
-
-	public String getCodNacional() {
-		return CodNacional;
-	}
-
-	public void setCodNacional(String codNacional) {
-		CodNacional = codNacional;
-	}
-
-	public List<Servico> getServicos() {
-		return servicos;
-	}
-
-	public void setServicos(List<Servico> servicos) {
-		this.servicos = servicos;
-	}
-	
 	
 }
